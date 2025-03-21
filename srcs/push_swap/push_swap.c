@@ -6,54 +6,11 @@
 /*   By: dimachad <dimachad@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:54:21 by dimachad          #+#    #+#             */
-/*   Updated: 2025/03/20 21:48:46 by dimachad         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:49:31 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-
-typedef struct s_node 
-{
-	int				i;
-	int				num;
-	struct s_node	*next_node;
-} t_node;
-
-void	add_node(t_node **init_arr_head, int num, int i)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	new_node->next_node = *init_arr_head;
-	*init_arr_head = new_node;
-	new_node->num = num;
-	new_node->i = i;
-}
-
-int	create_init_arr(int argc, char **argv, t_node **init_arr_head)
-{
-	char	**splitted_arr;
-	int		i;
-
-	i = 0;
-	if (argc < 2)
-		return (-1);
-	if (argc == 2)
-	{
-		splitted_arr = ft_split(argv[1], ' ');
-		while (splitted_arr[i])
-		{
-			add_node(init_arr_head, ft_atoi(splitted_arr[i]), i);
-			i++;
-		}
-	}
-	else
-	{
-		while (argv[i++])
-			add_node(init_arr_head, ft_atoi(argv[i]), (i - 1));
-	}
-	return (i);
-}
+#include "push_swap.h"
 
 void	print_arr(t_node *node_head, int len)
 {
@@ -67,9 +24,10 @@ void	print_arr(t_node *node_head, int len)
 	}
 }
 
-void	error_handle(void)
+int	error_handle(void)
 {
 	ft_putstr_fd("Error", 2);
+	return (-1);
 }
 
 int	main(int argc, char **argv)
