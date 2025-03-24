@@ -6,7 +6,7 @@
 /*   By: dimachad <dimachad@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 14:30:48 by dimachad          #+#    #+#             */
-/*   Updated: 2025/03/21 18:26:45 by dimachad         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:52:43 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,20 @@ int	add_node(t_node **arr_head, int num, int i)
 		free_list(arr_head);
 		return (error_handle());
 	}
-	if (*arr_head)
+	if (!(*arr_head))
+	{
+		*arr_head = new_node;
+		new_node->next_node = new_node;
+		new_node->prev_node = new_node;
+	}
+	else
 	{
 		new_node->next_node = *arr_head;
 		new_node->prev_node = (*arr_head)->prev_node;
 		(*arr_head)->prev_node = new_node;
+		new_node->prev_node->next_node = new_node; 
+		*arr_head = new_node;
 	}
-	else
-	{
-		new_node->next_node = new_node;
-		new_node->prev_node = new_node;
-	}
-	*arr_head = new_node;
 	new_node->num = num;
 	new_node->i = i;
 	return (i);

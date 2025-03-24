@@ -6,7 +6,7 @@
 /*   By: dimachad <dimachad@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:54:21 by dimachad          #+#    #+#             */
-/*   Updated: 2025/03/21 16:49:31 by dimachad         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:57:29 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	print_arr(t_node *node_head, int len)
 	curr_node = node_head;
 	while (len--)
 	{
-		ft_printf("%d, ", curr_node->num);	
+		ft_printf("%d", curr_node->num);	
+		if (len > 0)
+			ft_printf(", ");
+		if (len == 0)
+			ft_printf("\n");
 		curr_node = curr_node->next_node;
 	}
 }
@@ -35,6 +39,7 @@ int	main(int argc, char **argv)
 	t_node	*init_arr_head;
 	int		len;
 
+	init_arr_head = NULL;
 	len = create_init_arr(argc, argv, &init_arr_head);	
 	if (len < 1)
 	{
