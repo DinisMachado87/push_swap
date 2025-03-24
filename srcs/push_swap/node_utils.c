@@ -6,7 +6,7 @@
 /*   By: dimachad <dimachad@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 14:30:48 by dimachad          #+#    #+#             */
-/*   Updated: 2025/03/24 16:52:43 by dimachad         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:16:36 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	add_node(t_node **arr_head, int num, int i)
 	}
 	new_node->num = num;
 	new_node->i = i;
+	new_node->sub_len = 1;
+	new_node->prov_lis_head = NULL;
 	return (i);
 }
 
