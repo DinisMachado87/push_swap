@@ -37,6 +37,7 @@ int	error_handle(void)
 int	main(int argc, char **argv)
 {
 	t_node	*init_arr_head;
+	t_node	*curr;
 	int		len;
 
 	init_arr_head = NULL;
@@ -44,6 +45,12 @@ int	main(int argc, char **argv)
 	if (len < 1)
 		return (error_handle());	
 	print_arr(init_arr_head, len);
+	find_lis(init_arr_head, len);
+	curr = init_arr_head;
+	for (int i = 0; i < len; i++) {
+		ft_printf("Num: %d, To Move: %d\n", curr->num, curr->to_move);
+		curr = curr->next_node;
+	}
 	return (0);
 }
 
