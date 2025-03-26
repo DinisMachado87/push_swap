@@ -14,11 +14,11 @@
 
 static void	init_len_and_prev(t_node *curr_node, int len, int init_move)
 {
-	while (len--)
+	while (0 < len--)
 	{
         if (init_move)
 		    curr_node->to_move = 0;
-        if (!curr_node->to_move)
+        if (!(curr_node->to_move))
         {
             curr_node->sub_len = 1;
             curr_node->prov_prev = NULL;
@@ -56,7 +56,7 @@ int	find_lis(t_node *list_head, int len, int decreasing, int init_move)
     last_num = NULL;
     max_len = 0;
 	init_len_and_prev(curr_node, len, init_move);
-	while (len--)
+	while (0 < len--)
 	{
 		curr_node = curr_node->next_node;
         while (curr_node->to_move)
@@ -76,6 +76,7 @@ int	find_lis(t_node *list_head, int len, int decreasing, int init_move)
 		last_num->to_move = decreasing + 1;
 		last_num = last_num->prov_prev;
 	}
+    last_num->to_move = decreasing + 1;
     return (max_len);
 }
 
