@@ -12,45 +12,59 @@
 
 #include "push_swap.h"
 
-static void	init_len_and_prev(t_node *curr_node, int len)
+static void	init_len_and_prev(t_node *curr_node, int len, int init_move)
 {
 	while (len--)
 	{
-		curr_node->sub_len = 1;
-		curr_node->prov_prev = NULL;
-		curr_node->to_move = 0;
+        if (init_move)
+		    curr_node->to_move = 0;
+        if (!curr_node->to_move)
+        {
+            curr_node->sub_len = 1;
+            curr_node->prov_prev = NULL;
+        }
 		curr_node = curr_node->next_node;
 	}
 }
 
 // takes list head as first comparison node
-static void	find_num_sub_len_and_prev(t_node *comp_node, t_node *curr_node)
+static void	find_num_sub_len_and_prev(t_node *comp_node, t_node *curr_node, int decreasing)
 {
 	while (comp_node != curr_node)
 	{
-		if (comp_node->num < curr_node->num
-			&& (comp_node->sub_len + 1) > curr_node->sub_len)
+        if (((comp_node->sub_len + 1) > curr_node->sub_len)
+            && ((decreasing && (comp_node->num >= curr_node->num))
+		    || (!decreasing && (comp_node->num <= curr_node->num))))
 		{
 			curr_node->sub_len = comp_node->sub_len + 1;
 			curr_node->prov_prev = comp_node;
 		}
 		comp_node = comp_node->next_node;
+        while (comp_node->to_move)
+		    comp_node = comp_node->next_node;
 	}
 }
 
 // Finds the longest increasing subsequence
-void	find_lis(t_node *list_head, int len)
+int	find_lis(t_node *list_head, int len, int decreasing, int init_move)
 {
 	t_node			*curr_node;
 	t_node			*last_num;
 	int 			max_len;
 
 	curr_node = list_head;
-	init_len_and_prev(curr_node, len);
+    last_num = NULL;
+    max_len = 0;
+	init_len_and_prev(curr_node, len, init_move);
 	while (len--)
 	{
 		curr_node = curr_node->next_node;
-		find_num_sub_len_and_prev(list_head, curr_node);
+        while (curr_node->to_move)
+        {
+		    curr_node = curr_node->next_node;
+            len--;
+        }
+		find_num_sub_len_and_prev(list_head, curr_node, decreasing);
 		if (curr_node->sub_len > max_len)
 		{
 			max_len = curr_node->sub_len;
@@ -59,13 +73,9 @@ void	find_lis(t_node *list_head, int len)
 	}
 	while (last_num->prov_prev)
 	{
-		last_num->to_move = 1;
+		last_num->to_move = decreasing + 1;
 		last_num = last_num->prov_prev;
 	}
-	while (curr_node->next_node != list_head)
-	{
-		curr_node->prov_prev = NULL;
-		curr_node = curr_node->prev_node;
-	}
+    return (max_len);
 }
 

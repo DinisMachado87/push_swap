@@ -14,17 +14,17 @@
 
 void	print_arr(t_node *list_head, int len)
 {
-	t_node	*curr_node;
+	t_node	*curr;
 
-	curr_node = list_head;
+	curr = list_head;
 	while (len--)
 	{
-		ft_printf("%d", curr_node->num);	
+		ft_printf("Num: %d - toMove: %d", curr->num, curr->to_move);
 		if (len > 0)
-			ft_printf(", ");
+			ft_printf(",\n");
 		if (len == 0)
-			ft_printf("\n");
-		curr_node = curr_node->next_node;
+			ft_printf("\n-----\n");
+		curr = curr->next_node;
 	}
 }
 
@@ -37,7 +37,6 @@ int	error_handle(void)
 int	main(int argc, char **argv)
 {
 	t_node	*init_arr_head;
-	t_node	*curr;
 	int		len;
 
 	init_arr_head = NULL;
@@ -45,12 +44,8 @@ int	main(int argc, char **argv)
 	if (len < 1)
 		return (error_handle());	
 	print_arr(init_arr_head, len);
-	find_lis(init_arr_head, len);
-	curr = init_arr_head;
-	for (int i = 0; i < len; i++) {
-		ft_printf("Num: %d, To Move: %d\n", curr->num, curr->to_move);
-		curr = curr->next_node;
-	}
+    find_max_subsequences(init_arr_head, len);
+	print_arr(init_arr_head, len);
 	return (0);
 }
 

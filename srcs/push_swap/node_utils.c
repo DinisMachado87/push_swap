@@ -74,7 +74,7 @@ int	create_init_arr(int argc, char **argv, t_node **init_arr_head)
 	if (argc == 2)
 		splitted_arr = ft_split(argv[1], ' ');
 	else
-		splitted_arr = argv++;
+		splitted_arr = ++argv;
 	while (splitted_arr[i])
 		i++;
 	len = i;

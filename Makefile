@@ -21,7 +21,8 @@ SRC_DIR		= srcs/
 
 SRC_1		= srcs/push_swap/push_swap.c
 SRC_2		= srcs/push_swap/node_utils.c
-SRC_3		= srcs/push_swap/lis.c
+SRC_3		= srcs/push_swap/lis.c \
+			  srcs/push_swap/find_max_subsequences.c \
 
 OBJ_1		= ${SRC_1:.c=.o}
 OBJ_2		= ${SRC_2:.c=.o}

@@ -30,7 +30,8 @@ int		create_init_arr(int argc, char **argv, t_node **init_arr_head);
 int		add_node(t_node **init_arr_head, int num, int i);
 int		free_list(t_node **arr_head);
 void	print_arr(t_node *list_head, int len);
-void	find_lis(t_node *list_head, int len);
+int 	find_lis(t_node *list_head, int len, int decreasing, int init_move);
+int     find_max_subsequences(t_node *init_list, int len);
 int		error_handle(void);
 
 #endif
