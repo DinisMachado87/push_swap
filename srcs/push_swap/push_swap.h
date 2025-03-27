@@ -33,6 +33,9 @@ void	print_arr(t_node *list_head, int len);
 int 	find_lis(t_node *list_head, int len, int decreasing, int init_move);
 int     find_max_subsequences(t_node *init_list, int len);
 int		error_handle(void);
+void    swap_a(t_node **list_head);
+void    swap_b(t_node **list_head);
+void    swap_both(t_node **list_a_head, t_node **list_b_head);
 
 #endif
 

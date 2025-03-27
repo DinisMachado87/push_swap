@@ -22,15 +22,18 @@ SRC_DIR		= srcs/
 SRC_1		= srcs/push_swap/push_swap.c
 SRC_2		= srcs/push_swap/node_utils.c
 SRC_3		= srcs/push_swap/lis.c \
-			  srcs/push_swap/find_max_subsequences.c \
+			  srcs/push_swap/find_max_subsequences.c
+SRC_4		= srcs/push_swap/operations/swap.c
 
 OBJ_1		= ${SRC_1:.c=.o}
 OBJ_2		= ${SRC_2:.c=.o}
 OBJ_3		= ${SRC_3:.c=.o}
+OBJ_4		= ${SRC_4:.c=.o}
 
 DEBUG_OBJ_1	= ${SRC_1:.c=_debug.o}
 DEBUG_OBJ_2	= ${SRC_2:.c=_debug.o}
 DEBUG_OBJ_3	= ${SRC_3:.c=_debug.o}
+DEBUG_OBJ_4	= ${SRC_4:.c=_debug.o}
 
 INCLUDE		= -L ./libft -lft
 
@@ -39,21 +42,21 @@ INCLUDE		= -L ./libft -lft
 
 all: ${NAME}
 
-${NAME}: ${OBJ_1} ${OBJ_2} ${OBJ_3}
+${NAME}: ${OBJ_1} ${OBJ_2} ${OBJ_3} ${OBJ_4}
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJ_1} ${OBJ_2} ${OBJ_3} -o ${NAME} ${INCLUDE}
+	${CC} ${FLAGS} ${OBJ_1} ${OBJ_2} ${OBJ_3} ${OBJ_4} -o ${NAME} ${INCLUDE}
 
 debug: ${DEBUG_NAME}
 
-${DEBUG_NAME}: ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3}
+${DEBUG_NAME}: ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3} ${DEBUG_OBJ_4}
 	make -C $(LIBFTDIR)
-	${CC} ${DEBUG_FLAGS} ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3} -o ${DEBUG_NAME} ${INCLUDE}
+	${CC} ${DEBUG_FLAGS} ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3} ${DEBUG_OBJ_4} -o ${DEBUG_NAME} ${INCLUDE}
 
 srcs/push_swap/%_debug.o: srcs/push_swap/%.c
 	${CC} ${DEBUG_FLAGS} -c $< -o $@
 
 clean:
-	${RM} ${OBJ_1} ${OBJ_2} ${OBJ_3} ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3} ${NAME} ${DEBUG_NAME}
+	${RM} ${OBJ_1} ${OBJ_2} ${OBJ_3} ${OBJ_4} ${DEBUG_OBJ_1} ${DEBUG_OBJ_2} ${DEBUG_OBJ_3} ${DEBUG_OBJ_4} ${NAME} ${DEBUG_NAME}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean

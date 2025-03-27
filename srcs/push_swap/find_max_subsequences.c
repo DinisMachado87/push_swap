@@ -54,7 +54,7 @@ int find_max_subsequences(t_node *init_list, int len)
     ft_printf("lis_lds = %d\n", max_lis_lds);
     max_lds_lis = find_lds_lis(init_list, len);
     ft_printf("lds_lis = %d\n", max_lds_lis);
-    if (max_lis_lds > max_lds_lis)
+    if (max_lis_lds > (max_lds_lis * 2))
     {
         find_lis_lds(init_list, len);
         return (max_lis_lds);

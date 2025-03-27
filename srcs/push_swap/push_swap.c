@@ -36,16 +36,23 @@ int	error_handle(void)
 
 int	main(int argc, char **argv)
 {
-	t_node	*init_arr_head;
+	t_node	*a_stack_head;
+	t_node	*b_stack_head;
 	int		len;
 
-	init_arr_head = NULL;
-	len = create_init_arr(argc, argv, &init_arr_head);	
+	a_stack_head = NULL;
+	b_stack_head = NULL;
+	len = create_init_arr(argc, argv, &a_stack_head);
 	if (len < 1)
 		return (error_handle());	
-	print_arr(init_arr_head, len);
-    find_max_subsequences(init_arr_head, len);
-	print_arr(init_arr_head, len);
+    ft_printf("ORIGINAL SERIES\n");
+	print_arr(a_stack_head, len);
+    ft_printf("SWAP TEST\n");
+    swap_a(&a_stack_head);
+	print_arr(a_stack_head, len);
+    ft_printf("FIND LIS LDS TEST\n");
+    find_max_subsequences(a_stack_head, len);
+	print_arr(a_stack_head, len);
 	return (0);
 }
 
