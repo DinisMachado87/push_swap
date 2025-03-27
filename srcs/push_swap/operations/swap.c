@@ -20,8 +20,8 @@ static int    swap(t_node **list_head)
     t_node  *one_to_two;
     t_node  *two_to_one;
 
-    if (!(*list_head))
-        return(error_handle());
+    if (!(*list_head) || ((*list_head)->next_node == (*list_head)))
+        return(0);
     one_to_two = *list_head;
     two_to_one = (*list_head)->next_node;
     one_to_two->prev_node->next_node = two_to_one;
@@ -37,18 +37,18 @@ static int    swap(t_node **list_head)
 void    swap_a(t_node **list_head)
 {
     swap(list_head);
-    ft_printf("sa");
+    ft_printf("sa\n");
 }
 
 void    swap_b(t_node **list_head)
 {
     swap(list_head);
-    ft_printf("sb");
+    ft_printf("sb\n");
 }
 
 void    swap_both(t_node **list_a_head, t_node **list_b_head)
 {
     swap(list_a_head);
     swap(list_b_head);
-    ft_printf("ss");
+    ft_printf("ss\n");
 }

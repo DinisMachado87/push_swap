@@ -50,6 +50,10 @@ int	main(int argc, char **argv)
     ft_printf("SWAP TEST\n");
     swap_a(&a_stack_head);
 	print_arr(a_stack_head, len);
+    ft_printf("PUSH TEST\n");
+    ft_push(&a_stack_head, &b_stack_head, a);
+	print_arr(a_stack_head, len);
+	print_arr(b_stack_head, len);
     ft_printf("FIND LIS LDS TEST\n");
     find_max_subsequences(a_stack_head, len);
 	print_arr(a_stack_head, len);
