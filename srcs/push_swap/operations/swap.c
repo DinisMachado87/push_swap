@@ -34,21 +34,21 @@ static int    swap(t_node **list_head)
     return (0);
 }
 
-void    swap_a(t_node **list_head)
+void    swap_a(t_stacks *stacks)
 {
-    swap(list_head);
+    swap(&stacks->a_head);
     ft_printf("sa\n");
 }
 
-void    swap_b(t_node **list_head)
+void    swap_b(t_stacks *stacks)
 {
-    swap(list_head);
+    swap(&stacks->b_head);
     ft_printf("sb\n");
 }
 
-void    swap_both(t_node **list_a_head, t_node **list_b_head)
+void    swap_both(t_stacks *stacks)
 {
-    swap(list_a_head);
-    swap(list_b_head);
+    swap(&stacks->a_head);
+    swap(&stacks->b_head);
     ft_printf("ss\n");
 }

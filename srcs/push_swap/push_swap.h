@@ -26,16 +26,41 @@ typedef struct s_node
 	struct s_node	*prev_node;
 }	t_node;
 
-int		create_init_arr(int argc, char **argv, t_node **init_arr_head);
-int		add_node(t_node **init_arr_head, int num, int i);
-int		free_list(t_node **arr_head);
-void	print_arr(t_node *list_head, int len);
-int 	find_lis(t_node *list_head, int len, int decreasing, int init_move);
-int     find_max_subsequences(t_node *init_list, int len);
+typedef struct s_stacks
+{
+	t_node	*a_head;
+	t_node	*b_head;
+	int		len_a;
+    int     len_b;
+}   t_stacks;
+
+void     tests(t_stacks *stacks);
 int		error_handle(void);
-void    swap_a(t_node **list_head);
-void    swap_b(t_node **list_head);
-void    swap_both(t_node **list_a_head, t_node **list_b_head);
+
+int     init_stacks(int argc, char **argv, t_stacks *stacks);
+int		free_list(t_node **arr_head);
+
+void	print_stack(t_node *stack_head, int len);
+void    print_stack_a(t_stacks *stacks);
+void    print_stack_b(t_stacks *stacks);
+
+int 	find_lis(t_node *list_head, int len, int decreasing, int init_move);
+int     find_max_subsequences(t_node *init_stack, int len);
+
+void    push_to_a(t_stacks *stacks);
+void    push_to_b(t_stacks *stacks);
+
+void    rotate_a(t_stacks *stacks);
+void    rotate_b(t_stacks *stacks);
+void    rotate_both(t_stacks *stacks);
+void    rotate_reverse_a(t_stacks *stacks);
+void    rotate_reverse_b(t_stacks *stacks);
+void    rotate_reverse_both(t_stacks *stacks);
+
+void    swap_a(t_stacks *stacks);
+void    swap_b(t_stacks *stacks);
+void    swap_both(t_stacks *stacks);
+
 
 #endif
 

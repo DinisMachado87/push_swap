@@ -10,18 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../push_swap.h"
+
 //pa (push a): Take the first element at the top of b and put it at the top of a.
 //Do nothing if b is empty.
 //pb (push b): Take the first element at the top of a and put it at the top of b.
 //Do nothing if a is empty.
 
-void ft_push(t_node **head_move, t_node **head_host, char print_chr)
+static void push(t_node **head_move, t_node **head_host, char print_chr)
 {
     t_node  *new_head_move;
-    t_node  *new_head_host;
 
+    if (!(head_move))
+        return ;
     new_head_move = (*head_move)->next_node;
-    new_head_host = *head_move;
     (*head_move)->prev_node->next_node = (*head_move)->next_node;
     (*head_move)->next_node->prev_node = (*head_move)->prev_node;
     if (*head_host)
@@ -38,8 +40,17 @@ void ft_push(t_node **head_move, t_node **head_host, char print_chr)
         (*head_host)->next_node = *head_host;
         (*head_host)->prev_node = *head_host;
     }
+    *head_host = *head_move;
     *head_move = new_head_move;
-    *head_host = new_head_host;
     ft_printf("s%c\n", print_chr);
 }
 
+void    push_to_a(t_stacks *stacks)
+{
+    push(&stacks->b_head, &stacks->a_head, 'a');
+}
+
+void    push_to_b(t_stacks *stacks)
+{
+    push(&stacks->a_head, &stacks->b_head, 'b');
+}

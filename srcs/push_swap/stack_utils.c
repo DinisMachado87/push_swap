@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_utils.c                                       :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimachad <dimachad@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: dimachad <dimachad@student.42berlin.d>    +#+  +:+       +#+         */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 14:30:48 by dimachad          #+#    #+#             */
-/*   Updated: 2025/03/25 13:34:54 by dimachad         ###   ########.fr       */
+/*   Created: 2025/03/28 14:53:28 by dimachad          #+#    #+#             */
+/*   Updated: 2025/03/28 14:53:28 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	free_list(t_node **arr_head)
 	return (0);
 }
 
-int	add_node(t_node **arr_head, int num, int i)
+static int	add_node(t_node **arr_head, int num, int i)
 {
 	t_node	*new_node;
 	
@@ -62,7 +62,7 @@ int	add_node(t_node **arr_head, int num, int i)
 	return (i);
 }
 
-int	create_init_arr(int argc, char **argv, t_node **init_arr_head)
+static int	init_stack_a(int argc, char **argv, t_stacks *stacks)
 {
 	char	**splitted_arr;
 	int		i;
@@ -80,10 +80,18 @@ int	create_init_arr(int argc, char **argv, t_node **init_arr_head)
 	len = i;
 	while (--i >= 0)
 	{
-		i = add_node(init_arr_head, ft_atoi(splitted_arr[i]), i);
+		i = add_node(&stacks->a_head, ft_atoi(splitted_arr[i]), i);
 		if (i < 0)
-			return (free_list(init_arr_head));
+			return (free_list(&stacks->a_head));
 	}
 	return (len);
 }
 
+int    init_stacks(int argc, char **argv, t_stacks *stacks)
+{
+	stacks->a_head = NULL;
+	stacks->b_head = NULL;
+	stacks->len_a = init_stack_a(argc, argv, stacks);
+    stacks->len_b = 0;
+    return (0);
+}
